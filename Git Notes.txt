@@ -1,0 +1,32 @@
+Git: 
+// remember to put "git" before any of this commands
+clone <URL>: downloads a repository from the internet into the selected folder 
+Add <fileName.fileType>: adds a file to be tracked in the next commit // git add . = add all
+commit -m "message" : saves the current state of all added files
+    commit -am "message": saves the current state of all modified files (not added)
+status: shows the current locally advances compared to the github last pull version
+push: >updates< the github version into the current local one (need a commited version to push)
+pull: >updates< the local version into the github version (need the github version ahead of local one)
+log: shows info about all the commits done in the current branch
+reset: goes back to an older commit, no args = previous version, --hard <commitHash>, --hard origin master (github version)
+branch: shows all the branches on the repository, * the one currently working on
+checkout "-b" <branchName>: moves to the selected branch // -b is to create the new branch
+merge <branchName>: merges the current branch with the one selected.
+
+git/github info
+"merge conflicts": it happens when pulling from github a file that both (local and hub versions) 
+have changed the same line/s in. the code will look like this
+<<<<<<<<<<<<<< HEAD
+local code
+==========
+pulled code
+>>>>>>>>>>>>>>>>>>>> hash number 
+Fork: allows to copy a repository and enables the possibility of contribute to that code by modifing it
+and then try to push it (if the owner/s allows your pull request)
+
+
+CMD:
+ls: list all files in the current directory
+cd: change directory 
+touch (file name.filetype): creates a new file 
+ctrl ñ: open terminal (vs code)

@@ -1,0 +1,56 @@
+HTML
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <title>
+
+        </title>
+    </head>
+    <body>
+
+    </body>
+</html>
+
+body commands:
+<p> //new paragraph
+<br> // \n
+<h1/h2/h3> t // Header, the lower the number the bigger the letters
+<ul> //creates a list unordered list a dot on each item
+<ol> //creates a list ordered list ordered by numbers 1.2... on each element
+    <li> //add items to the list
+<table> 
+    <thead> <th> HeaderRow <th>
+    </thead>
+    <Tbody>    
+        <tr> //creates a table row
+            <td> //adds table data
+        </tr>
+    </tbody>
+</table>    
+<source src="video name" type= "video/mp4">
+<a href="link.com">Rename The Link</a>
+<a href="fileName.html">rename the link</a> //to move into another page of this directory
+<input type="text" placeholder="nameHere"> </input> // name="XXX" to refer to this input with other code
+<datalist> <option> // displays a menu to select the options, EG countries 
+<div> </div> // division of the page, usefull to reference a particular part
+
+--------------------
+
+
+
+{{  }} #jinja placeHolder
+
+head commands:
+<meta name="viewport" content="initial-scale1, width=device-width"> //adjust the page to the users device
+<link href="cssFile.css" rel="stylesheet">
+<script> //js code
+
+<form action="/source", method="get">
+method="post" // same as get but it doesn't show the input in the url
+
+{% block x %} {% endblock %}
+//if declared, extensions will use it to replace it with information
+//if used, put the content
+
+{% extendes "file.html" %}
