@@ -33,24 +33,5 @@ body commands:
 <a href="fileName.html">rename the link</a> //to move into another page of this directory
 <input type="text" placeholder="nameHere"> </input> // name="XXX" to refer to this input with other code
 <datalist> <option> // displays a menu to select the options, EG countries 
-<div> </div> // division of the page, usefull to reference a particular part
+<div> </div> // division of the page, useful to reference a particular part
 
---------------------
-
-
-
-{{  }} #jinja placeHolder
-
-head commands:
-<meta name="viewport" content="initial-scale1, width=device-width"> //adjust the page to the users device
-<link href="cssFile.css" rel="stylesheet">
-<script> //js code
-
-<form action="/source", method="get">
-method="post" // same as get but it doesn't show the input in the url
-
-{% block x %} {% endblock %}
-//if declared, extensions will use it to replace it with information
-//if used, put the content
-
-{% extendes "file.html" %}
