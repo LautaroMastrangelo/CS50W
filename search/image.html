@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+    </head>
+    <body>
+        <form action="https://google.com/search">
+            <input type="text" name="q">
+            <input type="hidden" name="udm" value="2">
+            <input type="submit" value="Google Search">
+        </form>
+    </body>
+</html>
+
+<!-- adding either a hidden input <name="udm" value="2"> or <name="tbm" value="isch"> works -->
+<!-- i found myself trying the udm=2 value, then searched and found that the correct way to use it is with tbm=isch -->

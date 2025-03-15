@@ -20,6 +20,11 @@ Boostrap
 
 CSS files // contains the same as "><" in the head, style part in html
 <head> <link rel="stylesheet" href="style.css"> //to give multiple html files the same css style
+SCSS files //allows to create variables holding a value. needs to be a SCSS file instead of a CSS one
+    >E.G $variableName: red; >> #example{color: $variableName}
+IMPORTANT // <link rel="stylesheet" href="fileName.css"> needs to be a css file
+    >needs to COMPILE "sass --watch fileName.scss:fileName.css" via console before executing the html file
+
 
 CSS propeties (some of them)
 >background-color
