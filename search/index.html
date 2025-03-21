@@ -2,24 +2,25 @@
 <html lang="en">
     <head>
         <title>Search</title>
+        <link rel="stylesheet" href="style.css"> </link>
     </head>
-    <style>
-        .top-right{
-            position: relative;
-            top: -20px;
-            right: -1700px;
-        }
-    </style>
+        
     <body>
-        <form action="https://google.com/search">
-            <div> 
-                <input type="text" name="q"> 
-                <input type="submit" value="Google Search">
+        <div class="other_pages">
+            <a class="links" href="image.html">Images</a>
+            <a class="links" href="advanced.html">Advanced search</a> 
+        </div>
+        <form action="https://google.com/search" id="search_form">
+            <div>
+                <input type="text" name="q" id="search_bar" > 
             </div>
-            <div class="top-right">
-                <a href="image.html" word-spacing: 30px;;>image</a>
-                <a href="advanced.html">advanced search</a> 
+            <div>
+                <input type="submit" value="Google Search" class="search_button form-control">
+                <input type="submit" name="btnI" value="I'm Feeling Lucky" class="search_button form-control">
             </div>
         </form>
     </body>
 </html>
+
+<!-- Had to look for how "Im Feeling Lucky" search actually works cause it was removed from google
+ so i couldn't experiment and look at the link as i did with image or advanced search-->

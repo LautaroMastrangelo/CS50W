@@ -1,8 +1,9 @@
 CSS
 <h1 style="color: blue; text-align: center;"> //css example. applies only to the header
 <body style="example: asd;" // applies to ALL text in the subtypes inside the body
-<head> <style> >h1, div, table {color: blue; text_align: center;}< </style> </head 
-    // makes all the selected elements (exp h1) get the selected atributes
+                // >< here
+<head> <style> >h1, div, table {color: blue; text_align: center;}< </style> 
+    // makes all the selected elements (EG h1) get the selected atributes
     // <head> refers to the sintaxis on top of the html
 <style> #idName {color: blue} // give an element id="idName" and change only that one (unique)
 <style> .className {color: blue} // give an element class="className" and change only those ones

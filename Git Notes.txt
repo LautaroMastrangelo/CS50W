@@ -30,3 +30,5 @@ ls: list all files in the current directory
 cd: change directory 
 touch (file name.filetype): creates a new file 
 ctrl ñ: open terminal (vs code)
+
+tbh procedo a skippear y ponerme a terminar lo de cplp 

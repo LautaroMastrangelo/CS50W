@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Search</title>
+        <title>Image</title>
+        <link rel="stylesheet" href="style.css"> </link>
     </head>
     <body>
-        <form action="https://google.com/search">
-            <input type="text" name="q">
+        <div class="other_pages">
+            <a class="links" href="index.html">Google Search</a>
+        </div>
+        <form action="https://google.com/search" id="search_form">
+            <input type="text" name="q" id="search_bar">
             <input type="hidden" name="udm" value="2">
-            <input type="submit" value="Google Search">
+            <input type="submit" value="Google Search" class="search_button form-control">
         </form>
     </body>
 </html>
 
-<!-- adding either a hidden input <name="udm" value="2"> or <name="tbm" value="isch"> works -->
-<!-- i found myself trying the udm=2 value, then searched and found that the correct way to use it is with tbm=isch -->
+<!-- adding either a hidden input <name="udm" value="2"> or <name="tbm" value="isch"> works 
+    i found myself trying the udm=2 value, then searched and found that the correct way to use it is with tbm=isch -->
