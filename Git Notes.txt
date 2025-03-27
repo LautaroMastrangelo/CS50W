@@ -7,6 +7,10 @@ commit -m "message" : saves the current state of all added files
 status: shows the current locally advances compared to the github last pull version
 push: >updates< the github version into the current local one (need a commited version to push)
 pull: >updates< the local version into the github version (need the github version ahead of local one)
+
+git subtree split --prefix=DirectoryName -b branchName //creates a new branch that only contains the selected directory
+
+
 log: shows info about all the commits done in the current branch
 reset: goes back to an older commit, no args = previous version, --hard <commitHash>, --hard origin master (github version)
 branch: shows all the branches on the repository, * the one currently working on
