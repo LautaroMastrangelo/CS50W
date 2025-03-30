@@ -19,6 +19,7 @@ def functionName(request, parameter):
 #Django html
 {{ variableName }} #use a sent variable in html with django
 {% if/for x %} #use logic inside this {% logic %}
+{% empty %} #in case a for loop is empty
     #html code EG: <li> {{x}} </li> display all elements in a python list
 {% endif %}
 
@@ -40,3 +41,11 @@ class NewTaskForm(forms.Form) #on views.py, remember to import forms from Django
 <form action="{link}" method="post">
 {{ form }} #"import" a form from the view (explained above)
 {% csrf_token %} #cybersecury mesure needed on Django
+
+def viewsFunction(request): #client side validation
+    if request.method == "POST" #access this post with request.POST, example below
+    form = newTaskForm(request.POST) #form.is_valid() will check if the the form follows this class specifications 
+    return HttpsResponseRedirect(reverse(appName:pageName)) #a comfy way to redirect
+
+request.session #creates a session (which is a dictionary) for the current user
+request.session["key"] = value #add a key to the session dict, for example a list 
