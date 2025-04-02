@@ -5,16 +5,17 @@ python manage.py startapp appName #creastes an app inside the project
 
 from django.urls import path, include
 
-app_name = "appName"
+app_name = "appName {x}" #this will be used to create a relative url (see below) 
 urlpattenrs = [
-path('appName/', include("app.urls")) #in main.urls.py
-path("pageName {x}", views.function, name="chooseUrlName") #in app.urls.py
+path('', include("app.urls")) #in main.urls.py
+path("<parameters>", views.function, name="pageName {x}") #in app.urls.py
     #this are in different folders but follow the same logic
 ]
     #remember to create a function (like below) in views and import it to use views.
 def functionName(request, parameter):
-    return render(request, "appName/htmlFile.html", {"variableName":parameter}) #create a appName dir inside a templates one
-    #path("<parameterType:parameterName>") allows ANY string in the **URL** to be used in the function
+    return render(request, "appName/htmlFile.html", {"variableName":parameter}) #need to create a appName dir inside a templates one
+    # path("<parameterType:parameterName>", views, name) in the urls.py file 
+        # allows ANY string in the **URL** to be used in the function
 
 #Django html
 {{ variableName }} #use a sent variable in html with django

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 import markdown2
 from . import util
 from django.http import HttpResponse
+import random
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -24,3 +25,9 @@ def search(request):
         return render(request, "encyclopedia/search.html", {
             "coincidences": list(filter(lambda c : searchingFor in c.lower(), util.list_entries()))
         })
+
+def randomPage(request):
+    number = random.randint(0, len(util.list_entries()) -1)
+    entries = util.list_entries()
+    entry = entries[number]
+    return redirect("entry", title=entry)
