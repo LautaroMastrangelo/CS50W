@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.shortcuts import redirect
 
 urlpatterns = [
+     path("", lambda request: redirect("/wiki/")),
     path('admin/', admin.site.urls),
     path('', include("encyclopedia.urls"))
 ]
+
+#not sure if i should modify this file, but the main link the console gives me
+#is incorrect, so i will redirect to the correct one
