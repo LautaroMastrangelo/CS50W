@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
+    <title>{% block title %}{% endblock %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,6 @@
     </style>
 </head>
 <body>
-    <h1>Page not found</h1>
-    <p>Feel free to contribute by adding it!</p>
+    {% block body %}{% endblock %}
 </body>
 </html></html>

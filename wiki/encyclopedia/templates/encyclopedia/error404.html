@@ -1,0 +1,10 @@
+{% extends "encyclopedia/errorlayout.html" %}
+
+{% block title %}
+    Error404
+{% endblock %}
+
+{% block body %}
+    <h1>Page not found</h1>
+    <p>Feel free to contribute by <a href="{% url 'create' %}"">Adding it</a></p>
+{% endblock %}

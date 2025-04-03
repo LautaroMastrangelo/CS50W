@@ -1,0 +1,10 @@
+{% extends "encyclopedia/errorlayout.html" %}
+
+{% block title %}
+    Error1 
+{% endblock %}
+
+{% block body %}
+    <h1>Page already exists</h1>
+    <p>You can edit it <a href="{% url 'entry' title=title %}">Here</a></p>
+{% endblock %}
