@@ -1,0 +1,18 @@
+CREATE TABLE example(
+    id TYPE NOT NULL PRIMARY KEY AUTOINCREMENT
+    field1 INTEGER NOT NULL
+    field2 STRING NOT NULL
+)
+
+INSERT INTO example(field1,field2) VALUES (1, "exampleValue")
+SELECT * FROM example WHERE {condition}
+UPDATE example SET field1 = "something" WHERE (condition); #set field1 for every row that meets the condition (end with ";")
+SELET * FROM table1 JOIN table2 ON table1.field1 = table2.field1 #join 
+CREATE INDEX indexName ON table (field) #create an index for faster searching
+
+#MODELS. Django way to interact with a DB
+class exampleClass(models.Model): #import this
+    field1 = models.type(conditions) #example max_length=X
+
+python manage.py makemigrations #this command will create a "migration" file
+python manage.py migrate #this command will create the DB file
