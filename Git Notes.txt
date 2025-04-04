@@ -9,6 +9,7 @@ push: >updates< the github version into the current local one (need a commited v
 pull: >updates< the local version into the github version (need the github version ahead of local one)
 
 git subtree split --prefix=DirectoryName -b branchName //creates a new branch that only contains the selected directory
+    git subtree split --prefix=wiki -b web50/projects/2020/x/wiki //edit and copypaste
 web50/projects/2020/x/ //branch copy remember to add the name of the Project to update
 git push origin1 ^ //checkout to the upper branch and then push it into cs50
 
