@@ -46,7 +46,7 @@ class NewTaskForm(forms.Form) #on views.py, remember to import forms from Django
 def viewsFunction(request): #client side validation
     if request.method == "POST" #access this post with request.POST, example below
     form = newTaskForm(request.POST) #form.is_valid() will check if the the form follows this class specifications 
-    return HttpsResponseRedirect(reverse(appName:pageName)) #a comfy way to redirect
-
+    return render (request,samePage, {"form": form}) #will auto tell the error to the user
+    #return HttpResponseRedirect(reverse(appName:pageName)) #a comfy way to redirect to other/same page
 request.session #creates a session (which is a dictionary) for the current user
 request.session["key"] = value #add a key to the session dict, for example a list 
