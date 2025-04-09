@@ -1,3 +1,6 @@
+python manage.py makemigrations     #IMPORTANT, add appName of which app functions with the db, otherwise it wont work
+python manage.py migrate      #commands to update DB from the terminal
+    
 CREATE TABLE example(
     id TYPE NOT NULL PRIMARY KEY AUTOINCREMENT
     field1 INTEGER NOT NULL
@@ -11,8 +14,21 @@ SELET * FROM table1 JOIN table2 ON table1.field1 = table2.field1 #join
 CREATE INDEX indexName ON table (field) #create an index for faster searching
 
 #MODELS. Django way to interact with a DB
-class exampleClass(models.Model): #import this
-    field1 = models.type(conditions) #example max_length=X
+class exampleClass(models.Model): #import models
+    field1 = models.type(conditions) #example max_length=X #example .ForeignKey(otherClass, on_delete=models.CASCADE) 
+        (related_name="value") #parameter inside .FK type, returns all coincidences of this field inside the "otherClass" query
+    field2 = models.ManyToMany 
+    def __str__(self):
+        return f"{self.field1} #personalizaed toString
 
 python manage.py makemigrations #this command will create a "migration" file
 python manage.py migrate #this command will create the DB file
+
+#Django queries
+variable = ExampleClass(field1="content1,etc), variable.save() #query to add a new object to the table
+variable = ExampleClass.objects.all(), variable = ExampleClass.objects.filter(field="value").first()
+                                                       #Other Example .exclude(field="value"). all()
+variable = ExampleClass.objetcs.get(pk/id=X) #easiest 1 item search
+
+admin.site.register(Table1) #allows to manipulate the tables in admin app
+from .models import Table1, Table2 #in admin.py

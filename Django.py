@@ -2,6 +2,8 @@
 django-admin startproject Project_Name #creates a Django "main" project
 python manage.py runserver #creates the sv (needs to be in the created folder)
 python manage.py startapp appName #creastes an app inside the project
+    #TODO REMEMBER TO ADD THE USER IN SETTIGS.PY >INSTALLED_APPS = "appName",
+python manage.py createsuperuser
 
 from django.urls import path, include
 
@@ -20,7 +22,7 @@ def functionName(request, parameter):
 #Django html
 {{ variableName }} #use a sent variable in html with django
 {% if/for x %} #use logic inside this {% logic %}
-{% empty %} #in case a for loop is empty
+{% empty %} #after the for (before the endfor)
     #html code EG: <li> {{x}} </li> display all elements in a python list
 {% endif %}
 
@@ -50,3 +52,15 @@ def viewsFunction(request): #client side validation
     #return HttpResponseRedirect(reverse(appName:pageName)) #a comfy way to redirect to other/same page
 request.session #creates a session (which is a dictionary) for the current user
 request.session["key"] = value #add a key to the session dict, for example a list 
+
+def login_function(): #need to import to use the functions
+    from django.contrib.auth import login, logout, authenticate #import the functions needed
+    user = authenticate(request, username=username, password=password) #check if the user exists
+    if user is not None: #if the user exists
+        login(request, user) #login the user (create a session)
+#inside the html file its possible to use the request variable like request.user to display user's info
+
+def logout():
+    from django.contrib.auth import logout #import the function needed
+    logout(request) #logout the user (delete the session)
+    return redirect()
