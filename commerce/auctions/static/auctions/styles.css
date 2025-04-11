@@ -1,3 +1,32 @@
 body {
+    background-color: rgb(116, 119, 117);
+}
+
+#top_menu {
+    background-color: rgb(24, 24, 24);
+    color: white;
+    padding: 10px
+}
+
+#bottom_menu {
+    padding: 10px
+}
+
+#listing_image{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.listing{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.listing_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 10px;
 }

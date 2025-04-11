@@ -2,6 +2,28 @@
 
 {% block body %}
     <h2>Active Listings</h2>
-
-    TODO
+    <ul>
+        {% for list in listings %}
+            <li class="listing">
+                <div>
+                    <img id="listing_image" src="{{ list.image.url }}">
+                </div>
+                <div class="listing_info">
+                    <ul>
+                        {% for key, value in list %}
+                            {% if key == "price" %}
+                                <li>${{ value }}</li>
+                            {% else %}
+                                <li> {{ value }} </li>
+                            {% endif %}
+                            
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+            <hr>
+        {% empty %}
+            <p>No active listings available.</p>
+        {% endfor %}
+    </ul>
 {% endblock %}
