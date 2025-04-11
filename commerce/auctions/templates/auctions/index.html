@@ -3,24 +3,10 @@
 {% block body %}
     <h2>Active Listings</h2>
     <ul>
-        {% for list in listings %}
-            <a href="{% url 'listingItem' listing_name=list.name listing_id=list.id %}" id="listing_link">
+        {% for listing in listings %}
+            <a href="{% url 'listing_item' listing_name=listing.name listing_id=listing.id %}" id="listing_link">
                 <li class="listing">
-                    <div>
-                        <img id="listing_image" src="{{ list.image.url }}">
-                    </div>
-                    <div class="listing_info">
-                        <ul>
-                            {% for key, value in list %}
-                                {% if key == "price" %}
-                                    <li>${{ value }}</li>
-                                {% else %}
-                                    <li> {{ value }} </li>
-                                {% endif %}
-                                
-                            {% endfor %}
-                        </ul>
-                    </div>
+                    {% include "auctions/listing_card.html" %}
                 </li>
             </a>
             <hr>
