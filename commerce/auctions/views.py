@@ -14,6 +14,13 @@ def index(request):
     })
 
 
+def listingItem (request, listing_name, listing_id):
+    return render(request, "auctions/listingItem.html", {
+        "listing_name" : listing_name,
+        "listing_id" : listing_id,
+        "listing" : Listings.objects.get(id=listing_id),
+    })
+
 def login_view(request):
     if request.method == "POST":
 
