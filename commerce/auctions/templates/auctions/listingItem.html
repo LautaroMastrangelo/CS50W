@@ -1,6 +1,18 @@
 {% extends "auctions/layout.html" %}
 
+{% block title %}Listing{% endblock %}
+
 {% block body %}
     <h2>Listing: {{ listing_name }}</h2>
-    {% include "auctions/listing_card.html" %}
+    <div>
+        <img id="listing_image" src="{{ listing.image.url }}">
+    </div>
+    <div class="listing_info">
+        <ul>
+            <p>name: {{ listing.name }}</p>
+            <p>Price: ${{ listing.calculated_price }}</p>
+            <p>Desc: {{ listing.description }}</p>
+            <p>Category: {{ listing.category }}</p>
+        </ul>
+    </div>
 {% endblock %}

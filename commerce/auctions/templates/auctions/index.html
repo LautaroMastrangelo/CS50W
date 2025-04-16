@@ -4,9 +4,19 @@
     <h2>Active Listings</h2>
     <ul>
         {% for listing in listings %}
-            <a href="{% url 'listing_item' listing_name=listing.name listing_id=listing.id %}" id="listing_link">
+            <a href="{% url 'listingItem' listing_name=listing.name listing_id=listing.id %}" id="listing_link">
                 <li class="listing">
-                    {% include "auctions/listing_card.html" %}
+                    <div>
+                        <img id="listing_image" src="{{ listing.image.url }}">
+                    </div>
+                    <div class="listing_info">
+                        <ul>
+                            <p>name: {{ listing.name }}</p>
+                            <p>Price: ${{ listing.calculated_price }}</p>
+                            <p>Desc: {{ listing.description }}</p>
+                            <p>Category: {{ listing.category }}</p>
+                        </ul>
+                    </div>
                 </li>
             </a>
             <hr>

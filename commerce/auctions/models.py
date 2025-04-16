@@ -20,6 +20,7 @@ class User(AbstractUser):
 class Bids(models.Model):
     bidder = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    listing = models.ForeignKey('Listings', on_delete=models.CASCADE, related_name="bids")
 
 class Comments(models.Model):
     commenter = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
@@ -40,6 +41,11 @@ class Listings(models.Model):
     def __iter__(self):
         return iter([
         ("name", self.name),
+        ("price", self.bids.filter().order_by("-amount").first() if self.bids.exists() else self.startingBid),
         ("description", self.description),
-        ("price", self.price)
+        ("category", self.category),
+        ("lister", self.lister.username),
     ])
+
+    def price(self):
+        return self.bids.filter().order_by("-amount").first() if self.bids.exists() else self.startingBid
