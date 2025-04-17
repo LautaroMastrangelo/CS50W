@@ -10,9 +10,28 @@
     <div class="listing_info">
         <ul>
             <p>name: {{ listing.name }}</p>
-            <p>Price: ${{ listing.calculated_price }}</p>
+            <p>Price: ${{ listing.price }}</p>
             <p>Desc: {{ listing.description }}</p>
             <p>Category: {{ listing.category }}</p>
+            <p>Lister: {{ listing.lister }}</p>
         </ul>
     </div>
+    <div class="add_to_watchlist">
+        <form method="POST" action="{% url 'watchlist' %}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="add">
+            <button type="submit" name="listing_id" value="{{ listing.id }}">Add to Watchlist</button>
+        </form>
+    </div>
+    <form method="POST"> 
+        {% csrf_token %}
+        <input name="bid" placeholder="Bid"> </input>
+        <input type="hidden" name="action" value="bid">
+        <button type="submit" name="listing_id" value="{{ listing.id }}">Submit Bid</button>
+    </form>
+        {% if listing.currentBider == user %}
+            <p> {{ listing.bids.all|length }} so far. Your bid is the current bid </p>
+        {% else %}
+            <p> {{ listing.bids.all|length }} so far. {{ listing.currentBider }} bid is the current bid </p>
+        {% endif %}
 {% endblock %}

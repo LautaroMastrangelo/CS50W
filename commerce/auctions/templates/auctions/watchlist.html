@@ -1,0 +1,13 @@
+{% extends "auctions/index.html" %}
+
+{% block title %}Watchlist{% endblock %}
+
+{% block listing_info %} 
+<div class="add_to_watchlist">
+    <form method="POST" action="{% url 'watchlist' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="remove">
+        <button type="submit" name="listing_id" value="{{ listing.id }}">Delete From Watchlist</button>
+    </form>
+</div>
+{% endblock %}

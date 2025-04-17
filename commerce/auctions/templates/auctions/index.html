@@ -1,6 +1,7 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
+    {% block top %}{% endblock %}
     <h2>Active Listings</h2>
     <ul>
         {% for listing in listings %}
@@ -12,9 +13,10 @@
                     <div class="listing_info">
                         <ul>
                             <p>name: {{ listing.name }}</p>
-                            <p>Price: ${{ listing.calculated_price }}</p>
+                            <p>Price: ${{ listing.price }}</p>
                             <p>Desc: {{ listing.description }}</p>
                             <p>Category: {{ listing.category }}</p>
+                            {% block listing_info %} {% endblock %}
                         </ul>
                     </div>
                 </li>

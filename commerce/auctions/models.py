@@ -15,7 +15,7 @@ CATEGORIES = [
     "Other"
 ]
 class User(AbstractUser):
-    pass
+    watchlist = models.ManyToManyField('Listings', blank=True, related_name="watchers")
 
 class Bids(models.Model):
     bidder = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
@@ -34,7 +34,7 @@ class Listings(models.Model):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=64)
     image = models.ImageField(upload_to='images/')
-    startingBid = models.IntegerField()
+    startingBid = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=64, choices=[(category, category) for category in CATEGORIES])
     def __str__(self):
         return f"{self.name} - {self.lister} - {self.startingBid} - {self.category} - {self.description} - {self.image}" 
@@ -48,4 +48,10 @@ class Listings(models.Model):
     ])
 
     def price(self):
-        return self.bids.filter().order_by("-amount").first() if self.bids.exists() else self.startingBid
+        return self.bids.filter().order_by("-amount").first().amount if self.bids.exists() else self.startingBid
+    
+    def currentBid(self):
+        return self.bids.filter().order_by("-amount").first().amount if self.bids.exists() else 0
+    
+    def currentBider(self):
+        return self.bids.filter().order_by("-amount").first().bidder if self.bids.exists() else None
