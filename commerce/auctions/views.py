@@ -41,7 +41,6 @@ def listing_item (request, listing_name, listing_id):
             else:
                 return HttpResponseRedirect(reverse("login"))
         elif request.POST.get("action") == "comment":
-            print("------------asd")
             comment = request.POST.get("comment")
             if request.user.is_authenticated:
                 try:
@@ -55,6 +54,10 @@ def listing_item (request, listing_name, listing_id):
                     return render(request, "auctions/error.html")
             else:
                 return HttpResponseRedirect(reverse("login"))
+        elif request.POST.get("action") == "close":
+            if request.user == listing.lister:
+                listing.closed = True
+                listing.save()
     return render(request, "auctions/listingItem.html", {
     "listing_name" : listing_name,
     "listing_id" : listing_id,

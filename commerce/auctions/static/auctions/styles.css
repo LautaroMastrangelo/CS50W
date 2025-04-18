@@ -40,3 +40,8 @@ body {
 .add_to_watchlist{
     
 }
+
+.close_listing{
+    position: relative;
+    left: 5%;
+}

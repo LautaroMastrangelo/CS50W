@@ -13,6 +13,15 @@
             {% endif %}
         </div>
     </div>
+    {% if listing.lister == user %}
+        <div class="close_listing">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="close">
+                <button type="submit">Close Listing</button>
+            </form>
+        </div>
+    {% endif %}
     <div class="listing_info">
         <ul>
             <p>name: {{ listing.name }}</p>
@@ -30,19 +39,27 @@
         </form>
     </div>
     <p></p>
-    <div>
-        {% if listing.currentBider == user %}
-            {{ listing.bids.all|length }} so far. Your bid is the current bid
-        {% else %}
-            {{ listing.bids.all|length }} so far. {{ listing.currentBider }} bid is the current bid
-        {% endif %} 
-        <form method="POST"> 
-            {% csrf_token %}
-            <input name="bid" placeholder="Bid" type="number"> </input>
-            <input type="hidden" name="action" value="bid">
-            <button type="submit" name="listing_id" value="{{ listing.id }}">Submit Bid</button>
-        </form>
-    </div>
+    {% if listing.closed == True %}
+        <p>This listing is closed. {{ listing.currentBider }} is the winner.</p>
+    {% else %}
+        <div class="bid_section">
+            {% if listing.currentBider == user %}
+                {{ listing.bids.all|length }} so far. Your bid is the current bid
+            {% elif listing.currentBider == None %}
+                No bids yet
+            {% else %}
+                {{ listing.bids.all|length }} so far. {{ listing.currentBider }} bid is the current bid
+            {% endif %} 
+            {% if listing.lister != user %}
+                <form method="POST"> 
+                    {% csrf_token %}
+                    <input name="bid" placeholder="Bid" type="number"> </input>
+                    <input type="hidden" name="action" value="bid">
+                    <button type="submit" name="listing_id" value="{{ listing.id }}">Submit Bid</button>
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
     <div class="comments_section">
         <h3>Comments</h3>
         <ul>
