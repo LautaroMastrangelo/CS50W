@@ -41,9 +41,6 @@ class Listings(models.Model):
     def __str__(self):
         return f"{self.name} - {self.lister} - {self.startingBid} - {self.category} - {self.description} - {self.image}" 
 
-    def getComments(self):
-        return list(self.comments.all())
-    
     def price(self):
         return self.bids.filter().order_by("-amount").first().amount if self.bids.exists() else self.startingBid
     
