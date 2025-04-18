@@ -5,14 +5,14 @@ import textwrap
 CATEGORIES = [
     "Electronics",
     "Fashion",
-    "Home & Garden",
+    "Home",
     "Books",
-    "Sports & Outdoors",
+    "Sports",
     "Automotive",
-    "Toys & Games",
-    "Health & Beauty",
+    "Toys",
+    "Health",
     "Collectibles",
-    "Other"
+    "Others"
 ]
 class User(AbstractUser):
     watchlist = models.ManyToManyField('Listings', blank=True, related_name="watchers")
@@ -28,25 +28,22 @@ class Comments(models.Model):
     listing = models.ForeignKey('Listings', on_delete=models.CASCADE, related_name="comments")
     def __str__(self):
         return f"{self.commenter} - {self.comment} - {self.listing}"
+    
 
 class Listings(models.Model):
     lister = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=64)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/',blank=True, null=True)
     startingBid = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=64, choices=[(category, category) for category in CATEGORIES])
+    closed = models.BooleanField(default=False)
     def __str__(self):
         return f"{self.name} - {self.lister} - {self.startingBid} - {self.category} - {self.description} - {self.image}" 
-    def __iter__(self):
-        return iter([
-        ("name", self.name),
-        ("price", self.bids.filter().order_by("-amount").first() if self.bids.exists() else self.startingBid),
-        ("description", self.description),
-        ("category", self.category),
-        ("lister", self.lister.username),
-    ])
 
+    def getComments(self):
+        return list(self.comments.all())
+    
     def price(self):
         return self.bids.filter().order_by("-amount").first().amount if self.bids.exists() else self.startingBid
     

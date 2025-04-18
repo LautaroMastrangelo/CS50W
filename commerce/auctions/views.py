@@ -11,7 +11,7 @@ from .models import User, Listings, Bids, Comments, CATEGORIES
 class ListingForm(forms.Form): 
     name = forms.CharField(label="Name", max_length=64)
     description = forms.CharField(label="Description", max_length=64)
-    image = forms.ImageField(label="Image")
+    image = forms.ImageField(label="Image", required=False)
     startingBid = forms.DecimalField(label="Starting Bid", max_digits=10, decimal_places=2)
     category = forms.ChoiceField(label="Category", choices=[(category, category) for category in CATEGORIES])
 
@@ -25,9 +25,9 @@ def listing_item (request, listing_name, listing_id):
     listing=Listings.objects.get(id=listing_id)
     if request.method == "POST":
         if request.POST.get("action") == "bid":
-            amount=float(request.POST.get("bid"))
             if request.user.is_authenticated:
                 try:
+                    amount=float(request.POST.get("bid"))
                     if (amount <= listing.currentBid() or amount < listing.startingBid):
                         return HttpResponse("ERROR: Bid amount is less than current price")
                     bid = Bids.objects.create(
@@ -37,7 +37,22 @@ def listing_item (request, listing_name, listing_id):
                     )
                     bid.save()
                 except:
-                    return HttpResponse("something went wrong")
+                    return render(request, "auctions/error.html")
+            else:
+                return HttpResponseRedirect(reverse("login"))
+        elif request.POST.get("action") == "comment":
+            print("------------asd")
+            comment = request.POST.get("comment")
+            if request.user.is_authenticated:
+                try:
+                    comment = Comments.objects.create(
+                        commenter=request.user,
+                        comment=comment,
+                        listing=listing
+                    )
+                    comment.save()
+                except:
+                    return render(request, "auctions/error.html")
             else:
                 return HttpResponseRedirect(reverse("login"))
     return render(request, "auctions/listingItem.html", {

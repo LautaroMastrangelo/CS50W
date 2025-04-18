@@ -8,7 +8,11 @@
             <a href="{% url 'listingItem' listing_name=listing.name listing_id=listing.id %}" id="listing_link">
                 <li class="listing">
                     <div>
-                        <img id="listing_image" src="{{ listing.image.url }}">
+                        {% if listing.image %}
+                            <img src="{{ listing.image.url }}" alt="Listing Image" class="listing_image">
+                        {% else %}
+                            <p style="margin-top: 50%;">No image available</p> 
+                        {% endif %}
                     </div>
                     <div class="listing_info">
                         <ul>
