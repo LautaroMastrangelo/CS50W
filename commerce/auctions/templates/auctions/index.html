@@ -9,19 +9,17 @@
                 <li class="listing">
                     <div>
                         {% if listing.image %}
-                            <img src="{{ listing.image.url }}" alt="Listing Image" class="listing_image">
+                            <img src="{{ listing.image.url }}" alt="Listing Image" class="listings_images">
                         {% else %}
                             <p style="margin-top: 50%;">No image available</p> 
                         {% endif %}
                     </div>
-                    <div class="listing_info">
-                        <ul>
-                            <p>name: {{ listing.name }}</p>
-                            <p>Price: ${{ listing.price }}</p>
-                            <p>Desc: {{ listing.description }}</p>
-                            <p>Category: {{ listing.category }}</p>
-                            {% block listing_info %} {% endblock %}
-                        </ul>
+                    <div class="listing_info" style="width: 75%; margin: 0 auto;">
+                        <h1 style="font-size: 28px; font-weight: bold;">{{ listing.name }}</h1>
+                        <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Price: ${{ listing.price }}</p>
+                        <p style="">Description: {{ listing.description }}</p>
+                        <p style="font-size: 16px;">{{ listing.category }}</p>
+                        {% block listing_info %}{% endblock %}
                     </div>
                 </li>
             </a>

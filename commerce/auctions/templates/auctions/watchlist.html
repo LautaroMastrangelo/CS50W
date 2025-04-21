@@ -7,7 +7,7 @@
     <form method="POST" action="{% url 'watchlist' %}">
         {% csrf_token %}
         <input type="hidden" name="action" value="remove">
-        <button type="submit" name="listing_id" value="{{ listing.id }}">Delete From Watchlist</button>
+        <button class="btn btn-danger" type="submit" name="listing_id" value="{{ listing.id }}">Delete From Watchlist</button>
     </form>
 </div>
 {% endblock %}

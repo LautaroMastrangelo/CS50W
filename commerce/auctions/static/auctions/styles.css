@@ -12,9 +12,17 @@ body {
     padding: 10px
 }
 
+.listings_images{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    border: 1px solid whitesmoke;
+}
+
 .listing_image{
-    width: 200px;
-    height: 200px;
+    width: 700px;
+    height: 500px;
     object-fit: cover;
     display: block;
     border: 1px solid whitesmoke;
@@ -37,11 +45,21 @@ body {
     color: inherit;
 }
 
-.add_to_watchlist{
+.add_to_watchlist {
     
 }
 
 .close_listing{
     position: relative;
     left: 5%;
+}
+
+.frame{
+    background-color: rgb(182, 182, 182);
+}
+
+.description_background{
+    height:100px; 
+    width: 50%;
+    padding-left: 10px;
 }

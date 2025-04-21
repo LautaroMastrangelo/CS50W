@@ -3,40 +3,53 @@
 {% block title %}Listing{% endblock %}
 
 {% block body %}
-    <h2>Listing: {{ listing_name }}</h2>
+        <h2>Listing: {{ listing_name }}</h2>
+        <div div class="add_to_watchlist">
+            <form method="POST" action="{% url 'watchlist' %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add">
+                <button class="btn btn-primary" type="submit" name="listing_id" value="{{ listing.id }}">Add to Watchlist</button>
+            </form>
+        </div>
     <div>
-        <div>
+        <div style="margin: 0 auto; width: fit-content;">
             {% if listing.image %}
                 <img src="{{ listing.image.url }}" alt="Listing Image" class="listing_image">
             {% else %}
-                <p style="margin-top: 50%;">No image available</p> 
+                <p style="border: 2px solid black; width: 75%; text-align: center;">No image available</p> 
             {% endif %}
         </div>
     </div>
+    
     {% if listing.lister == user %}
         <div class="close_listing">
             <form method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="close">
-                <button type="submit">Close Listing</button>
+                <button class="btn btn-danger" type="submit">Close Listing</button>
             </form>
         </div>
     {% endif %}
-    <div class="listing_info">
-        <ul>
-            <p>name: {{ listing.name }}</p>
-            <p>Price: ${{ listing.price }}</p>
-            <p>Desc: {{ listing.description }}</p>
-            <p>Category: {{ listing.category }}</p>
-            <p>Lister: {{ listing.lister }}</p>
-        </ul>
-    </div>
-    <div class="add_to_watchlist">
-        <form method="POST" action="{% url 'watchlist' %}">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="add">
-            <button type="submit" name="listing_id" value="{{ listing.id }}">Add to Watchlist</button>
-        </form>
+    <div class="">
+
+        <div class="mb-3">
+            <span style="font-size: 32px; font-weight: bold;">$ {{ listing.price }}</span>
+        </div>
+        <div class="mb-3">
+            <strong>Description:</strong>
+            <div class="frame description_background">
+                {{ listing.description }}
+            </div>
+        </div>
+    
+        <div class="mb-2">
+            <strong>Category:</strong> {{ listing.category }}
+        </div>
+    
+        <div>
+            <strong>Listed by:</strong> {{ listing.lister }}
+        </div>
+    
     </div>
     <p></p>
     {% if listing.closed == True %}
@@ -55,25 +68,35 @@
                     {% csrf_token %}
                     <input name="bid" placeholder="Bid" type="number"> </input>
                     <input type="hidden" name="action" value="bid">
-                    <button type="submit" name="listing_id" value="{{ listing.id }}">Submit Bid</button>
+                    <button class="btn btn-secondary" type="submit" name="listing_id" value="{{ listing.id }}">Submit Bid</button>
                 </form>
             {% endif %}
         </div>
     {% endif %}
     <div class="comments_section">
-        <h3>Comments</h3>
-        <ul>
-            {% for comment in listing.comments.all %}
-                <li>{{ comment.commenter }}: {{ comment.comment }}</li>
-            {% empty %}
-                <p>No comments yet.</p>
-            {% endfor %}
-        </ul>
+        <div class="mt-4">
+            <h5>Comments</h5>
+            {% if listing.comments.all %}
+                <ul class="list-group">
+                    {% for comment in listing.comments.all %}
+                        <li class="list-group-item w-75 frame">
+                            <div class="text-break">
+                                <strong>{{ comment.commenter }}:</strong> {{ comment.comment }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-secondary" role="alert">
+                    No comments yet.
+                </div>
+            {% endif %}
+        </div>
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="action" value="comment">
             <input type="text" name="comment" placeholder="Add a comment" required>
-            <button type="submit" name="listing_id" value="{{ listing.id }}">Submit</button>
+            <button class="btn btn-primary" type="submit" name="listing_id" value="{{ listing.id }}">Submit</button>
         </form>
     </div>
 {% endblock %}
