@@ -45,15 +45,6 @@ body {
     color: inherit;
 }
 
-.add_to_watchlist {
-    
-}
-
-.close_listing{
-    position: relative;
-    left: 5%;
-}
-
 .frame{
     background-color: rgb(182, 182, 182);
 }
@@ -62,4 +53,41 @@ body {
     height:100px; 
     width: 50%;
     padding-left: 10px;
+}
+
+.categories-container {
+    max-width: 250px;
+    margin-top: 20px;
+}
+
+.category_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category_button {
+    background-color: green; /* rojo Bootstrap */
+    color: black;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.category_button:hover {
+    background-color: darkgreen;
+}
+
+.bid_status{
+    font-weight: bold; 
+    font-size: 18px;
+}
+
+.input_style{
+    width: 50%; 
+    border-radius: 5px; 
+    padding: 10px;
+    border: none;
 }

@@ -20,55 +20,53 @@
             {% endif %}
         </div>
     </div>
-    
-    {% if listing.lister == user %}
-        <div class="close_listing">
-            <form method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="action" value="close">
-                <button class="btn btn-danger" type="submit">Close Listing</button>
-            </form>
-        </div>
-    {% endif %}
-    <div class="">
-
+    <div>
         <div class="mb-3">
             <span style="font-size: 32px; font-weight: bold;">$ {{ listing.price }}</span>
         </div>
-        <div class="mb-3">
-            <strong>Description:</strong>
-            <div class="frame description_background">
-                {{ listing.description }}
+        <div style="font-size: 18px;">
+            <div class="mb-3">
+                <strong>Description:</strong>
+                <div class="frame description_background">
+                    {{ listing.description }}
+                </div>
+            </div>
+        
+            <div class="mb-2">
+                <strong>Category:</strong> <strong style="color:blue">{{ listing.category }}</strong> 
+            </div>
+        
+            <div>
+                <strong>Listed by:</strong> {{ listing.lister }}
             </div>
         </div>
-    
-        <div class="mb-2">
-            <strong>Category:</strong> {{ listing.category }}
-        </div>
-    
-        <div>
-            <strong>Listed by:</strong> {{ listing.lister }}
-        </div>
-    
     </div>
     <p></p>
     {% if listing.closed == True %}
-        <p>This listing is closed. {{ listing.currentBider }} is the winner.</p>
+        {% if listing.currentBider == user %}
+            <span class="bid_status" style="color:rgb(223, 0, 0)">This listing is closed. You are the winner!</span>
+        {% else %}
+            <span class="bid_status" style="color:rgb(223, 0, 0)">This listing is closed. {{ listing.currentBider }} is the winner.</span>
+        {% endif %}
     {% else %}
         <div class="bid_section">
-            {% if listing.currentBider == user %}
-                {{ listing.bids.all|length }} so far. Your bid is the current bid
-            {% elif listing.currentBider == None %}
-                No bids yet
+            <div class="bid_status">
+                {% if listing.currentBider == user %}
+                    <span>{{ listing.bids.all|length }} bid(s) so far. Your bid is the current bid.</span>
+                {% elif listing.currentBider == None %}
+                    <span>No bids yet.</span>
+                {% else %}
+                    <span>{{ listing.bids.all|length }} bid(s) so far. {{ listing.currentBider }}'s bid is the current bid.</span>
+                {% endif %}
+            </div>
+            {% if listing.lister == user %}
+                <span>This is your listing</span>
             {% else %}
-                {{ listing.bids.all|length }} so far. {{ listing.currentBider }} bid is the current bid
-            {% endif %} 
-            {% if listing.lister != user %}
                 <form method="POST"> 
                     {% csrf_token %}
-                    <input name="bid" placeholder="Bid" type="number"> </input>
+                    <input name="bid" placeholder="Enter your bid" type="number" min="1" class="input_style">
                     <input type="hidden" name="action" value="bid">
-                    <button class="btn btn-secondary" type="submit" name="listing_id" value="{{ listing.id }}">Submit Bid</button>
+                    <button class="btn btn-primary" type="submit" name="listing_id" value="{{ listing.id }}">Submit Bid</button>
                 </form>
             {% endif %}
         </div>
@@ -92,11 +90,22 @@
                 </div>
             {% endif %}
         </div>
+        <p></p>
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="action" value="comment">
-            <input type="text" name="comment" placeholder="Add a comment" required>
-            <button class="btn btn-primary" type="submit" name="listing_id" value="{{ listing.id }}">Submit</button>
+            <input type="text" name="comment" placeholder="Add a comment" required class="input_style">
+            <button class="btn btn-primary" type="submit" name="listing_id" value="{{ listing.id }}">Add comment</button>
         </form>
     </div>
+    {% if listing.lister == user %}
+        <p></p>
+        <div class="close_listing">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="close">
+                <button class="btn btn-danger" type="submit">Close Listing</button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}

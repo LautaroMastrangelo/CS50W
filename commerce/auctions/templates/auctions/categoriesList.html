@@ -4,17 +4,16 @@
 
 {% block body %}
     <h2>Categories</h2>
-    <div class="categories">
+    <div class="categories-container">
         <form method="POST" action="{% url 'categories' %}">
             {% csrf_token %}
-            <ul>
+            <div class="category_menu">
                 {% for category in categories %}
-                    <li>
-                        <button class="category_button" 
-                        type="submit" name="category" value="{{ category }}">{{ category }}</button>
-                    </li>
+                    <button type="submit" name="category" value="{{ category }}" class="category_button">
+                        {{ category }}
+                    </button>
                 {% endfor %}
-            </ul>
+            </div>
         </form>
-    </div>
+    </div>    
 {% endblock %}
